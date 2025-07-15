@@ -7,31 +7,37 @@ import { Toaster } from "react-hot-toast";
   import LandingPage from "./pages/LandingPage.jsx";
   import Dashboard from "./pages/Home/Dashboard.jsx";
   import OnlyPrep from "./pages/OnlyPrep/OnlyPrep.jsx";
+  import UserProvider from "./context/userContext.jsx";
 
 
-const App = () => {
-  return(
-  <div>
-    <Router>
-      <Routes>
-        {/* default routes  */}
-        <Route path="/" element={<LandingPage />} />
-     
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/onlyprep/:sessionId" element={<OnlyPrep />} />
-
-        
-      </Routes>
-    </Router>
-    <Toaster 
-    toastOptions={{
-      className : "" ,
-      style: {
-        fontSize :"13px",
-      }
-    }} />
-  </div>
-  )
-}
-
-export default App;
+  const App = () => {
+    return (
+      <UserProvider>
+        <div>
+          <Router>
+            <Routes>
+              {/* Default Route */}
+              <Route path="/" element={<LandingPage />} />
+  
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route
+                path="/only-prep/:sessionId"
+                element={<OnlyPrep />}
+              />
+            </Routes>
+          </Router>
+  
+          <Toaster
+            toastOptions={{
+              className: "",
+              style: {
+                fontSize: "13px",
+              },
+            }}
+          />
+        </div>
+      </UserProvider>
+    );
+  };
+  
+  export default App;
